@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102f28">
+  <meta name="description" content="Explore como a inteligência artificial pode ajudar a proteger a água, o solo, o ar, as plantas e os animais.">
+  <title>IA pela Terra — tecnologia a serviço da natureza</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --forest: #102f28;
+      --forest-soft: #21483d;
+      --green: #2e7657;
+      --mint: #dcefe1;
+      --lime: #d7ed8a;
+      --cream: #f7f5eb;
+      --paper: #fffef9;
+      --ink: #1d3028;
+      --muted: #62736a;
+      --line: #d8e1d7;
+      --shadow: 0 18px 50px rgba(16, 47, 40, .1);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+    button { font: inherit; }
+    .topbar {
+      display: flex; align-items: center; justify-content: space-between;
+      max-width: 1180px; margin: auto; padding: 22px 28px;
+    }
+    .brand { display: flex; gap: 10px; align-items: center; color: var(--forest); font-weight: 800; letter-spacing: -.04em; }
+    .brand-mark { display: grid; place-items: center; width: 35px; height: 35px; border-radius: 12px; background: var(--lime); font-size: 19px; }
+    .top-link { color: var(--forest-soft); text-decoration: none; font-size: .9rem; font-weight: 650; }
+    .top-link:hover { text-decoration: underline; }
+    .hero {
+      position: relative; overflow: hidden; background: var(--forest); color: white;
+      padding: 72px 28px 80px;
+    }
+    .hero::after {
+      content: ""; position: absolute; width: 440px; height: 440px; border: 1px solid rgba(215,237,138,.22);
+      border-radius: 50%; right: -85px; top: -200px; box-shadow: 0 0 0 45px rgba(215,237,138,.04), 0 0 0 95px rgba(215,237,138,.035);
+    }
+    .hero-inner { position: relative; z-index: 1; max-width: 1124px; margin: auto; }
+    .eyebrow { display: inline-flex; gap: 8px; align-items: center; color: var(--lime); text-transform: uppercase; letter-spacing: .13em; font-weight: 750; font-size: .73rem; }
+    .eyebrow::before { content: ""; width: 24px; height: 1px; background: var(--lime); }
+    h1 { max-width: 760px; margin: 20px 0 18px; font-size: clamp(2.7rem, 6vw, 5.4rem); line-height: .99; letter-spacing: -.065em; }
+    h1 em { color: var(--lime); font-style: normal; }
+    .hero p { max-width: 570px; margin: 0; color: #d2e0d8; font-size: 1.08rem; }
+    .hero-meta { margin-top: 32px; display: flex; align-items: center; gap: 12px; color: #d2e0d8; font-size: .88rem; }
+    .pulse { width: 9px; height: 9px; background: var(--lime); border-radius: 50%; box-shadow: 0 0 0 5px rgba(215,237,138,.13); }
+    main { max-width: 1180px; margin: auto; padding: 78px 28px 82px; }
+    .section-heading { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 35px; }
+    .section-heading h2 { margin: 8px 0 0; font-size: clamp(1.8rem, 3.5vw, 2.8rem); letter-spacing: -.055em; line-height: 1.12; color: var(--forest); }
+    .section-heading p { max-width: 350px; margin: 0; color: var(--muted); font-size: .95rem; }
+    .section-kicker { color: var(--green); text-transform: uppercase; letter-spacing: .13em; font-size: .72rem; font-weight: 800; }
+    .flow-layout { display: grid; grid-template-columns: minmax(0, 1fr) 370px; gap: 28px; align-items: stretch; }
+    .flow-card, .detail-card { border: 1px solid var(--line); border-radius: 24px; background: var(--paper); box-shadow: var(--shadow); }
+    .flow-card { padding: 32px; }
+    .flow-start { width: fit-content; margin: 0 auto; padding: 11px 20px; border-radius: 999px; background: var(--forest); color: white; font-weight: 700; font-size: .88rem; }
+    .connector { height: 36px; width: 1px; margin: auto; background: #9ab6a2; position: relative; }
+    .connector::after { content: ""; position: absolute; left: -4px; bottom: 0; width: 8px; height: 8px; border-right: 1px solid #9ab6a2; border-bottom: 1px solid #9ab6a2; transform: rotate(45deg); }
+    .process { max-width: 440px; margin: 0 auto; border: 1px solid #b8d1bd; background: #eef6ec; border-radius: 16px; padding: 16px 19px; text-align: center; }
+    .process strong { display: block; color: var(--forest); font-size: .97rem; }
+    .process span { color: var(--muted); font-size: .82rem; }
+    .branch-label { display: flex; align-items: center; gap: 12px; color: var(--muted); font-size: .78rem; font-weight: 700; margin: 25px 0 13px; }
+    .branch-label::before, .branch-label::after { content: ""; height: 1px; flex: 1; background: var(--line); }
+    .category-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+    .category-btn {
+      min-height: 114px; padding: 15px 8px; border: 1px solid var(--line); border-radius: 17px;
+      background: white; color: var(--ink); cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
+    }
+    .category-btn:hover { transform: translateY(-3px); border-color: #8cb99a; box-shadow: 0 8px 18px rgba(16,47,40,.08); }
+    .category-btn[aria-pressed="true"] { background: var(--forest); color: white; border-color: var(--forest); box-shadow: 0 8px 20px rgba(16,47,40,.16); }
+    .category-icon { font-size: 1.65rem; line-height: 1; }
+    .category-name { font-size: .82rem; font-weight: 750; }
+    .category-action { display: block; font-size: .65rem; opacity: .7; }
+    .flow-note { margin: 19px 0 0; color: var(--muted); text-align: center; font-size: .78rem; }
+    .detail-card { padding: 29px; display: flex; flex-direction: column; min-height: 100%; }
+    .detail-top { display: flex; align-items: center; justify-content: space-between; }
+    .detail-icon { width: 50px; height: 50px; display: grid; place-items: center; border-radius: 16px; background: var(--mint); font-size: 1.6rem; }
+    .step-tag { color: var(--green); background: #edf5e9; border-radius: 99px; padding: 6px 10px; text-transform: uppercase; letter-spacing: .08em; font-size: .64rem; font-weight: 800; }
+    .detail-card h3 { margin: 24px 0 8px; color: var(--forest); font-size: 1.55rem; line-height: 1.15; letter-spacing: -.04em; }
+    .detail-card > p { margin: 0; color: var(--muted); font-size: .93rem; }
+    .detail-divider { border: 0; border-top: 1px solid var(--line); margin: 22px 0; }
+    .detail-label { color: var(--green); font-size: .68rem; text-transform: uppercase; letter-spacing: .11em; font-weight: 800; margin: 0 0 8px; }
+    .detail-example { margin: 0; color: var(--ink); font-size: .88rem; }
+    .detail-impact { margin-top: auto; padding: 14px; background: #f1f5e8; border-radius: 14px; color: var(--forest-soft); font-size: .81rem; }
+    .detail-impact strong { display: block; margin-bottom: 3px; }
+    .how-section { padding-top: 94px; }
+    .how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 28px; }
+    .how-item { padding: 23px; border-radius: 18px; background: #eaf0e4; }
+    .how-number { color: var(--green); font-weight: 850; font-size: .72rem; letter-spacing: .1em; }
+    .how-item h3 { margin: 10px 0 6px; color: var(--forest); font-size: 1.05rem; }
+    .how-item p { margin: 0; color: var(--muted); font-size: .86rem; }
+    .care { display: grid; grid-template-columns: auto 1fr; gap: 17px; align-items: start; margin-top: 52px; padding: 25px 28px; border: 1px solid #e6d9a8; background: #fff9e8; border-radius: 18px; }
+    .care-icon { font-size: 1.45rem; }
+    .care h3 { margin: 0 0 4px; font-size: .97rem; color: #52451f; }
+    .care p { margin: 0; color: #756a4d; font-size: .86rem; }
+    footer { background: var(--forest); color: #d2e0d8; padding: 25px 28px; text-align: center; font-size: .8rem; }
+    footer strong { color: var(--lime); }
+    :focus-visible { outline: 3px solid #95b836; outline-offset: 3px; }
+    @media (max-width: 900px) {
+      .flow-layout { grid-template-columns: 1fr; }
+      .detail-card { min-height: 360px; }
+    }
+    @media (max-width: 620px) {
+      .topbar { padding: 17px 20px; }
+      .top-link { font-size: .78rem; }
+      .hero { padding: 58px 22px 62px; }
+      main { padding: 58px 18px 65px; }
+      .section-heading { display: block; }
+      .section-heading p { margin-top: 12px; }
+      .flow-card { padding: 23px 15px; }
+      .category-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .category-btn { min-height: 95px; }
+      .category-btn:last-child { grid-column: 1 / -1; }
+      .how-section { padding-top: 68px; }
+      .how-grid { grid-template-columns: 1fr; }
+      .care { padding: 20px; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; } }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#inicio" aria-label="IA pela Terra, início"><span class="brand-mark" aria-hidden="true">✳</span><span>IA pela Terra</span></a>
+    <a class="top-link" href="#como-funciona">Como funciona <span aria-hidden="true">↗</span></a>
+  </header>
+  <section class="hero" id="inicio">
+    <div class="hero-inner">
+      <span class="eyebrow">Tecnologia a serviço da natureza</span>
+      <h1>Mais inteligência.<br><em>Mais vida.</em></h1>
+      <p>Como a inteligência artificial pode ajudar pessoas e comunidades a proteger o meio ambiente — um ecossistema de cada vez.</p>
+      <div class="hero-meta"><span class="pulse" aria-hidden="true"></span> Explore o fluxograma e escolha um tema para descobrir</div>
+    </div>
+  </section>
+  <main>
+    <section aria-labelledby="explore-title">
+      <div class="section-heading">
+        <div><span class="section-kicker">Um caminho de possibilidades</span><h2 id="explore-title">Da observação<br>à ação ambiental</h2></div>
+        <p>Selecione uma área para ver exemplos concretos de como a IA transforma dados em decisões que ajudam a natureza.</p>
+      </div>
+      <div class="flow-layout">
+        <div class="flow-card" aria-label="Fluxograma interativo de proteção ambiental">
+          <div class="flow-start">Começo: cuidar do planeta</div>
+          <div class="connector" aria-hidden="true"></div>
+          <div class="process"><strong>🌎 A IA observa e aprende</strong><span>Analisa imagens, sensores e padrões ambientais</span></div>
+          <div class="connector" aria-hidden="true"></div>
+          <div class="branch-label">Escolha o que queremos proteger</div>
+          <div class="category-grid" role="group" aria-label="Escolha uma área ambiental">
+            <button class="category-btn" type="button" data-topic="agua" aria-pressed="true" aria-controls="explicacao"><span class="category-icon" aria-hidden="true">💧</span><span class="category-name">Água</span><span class="category-action">Explorar →</span></button>
+            <button class="category-btn" type="button" data-topic="solo" aria-pressed="false" aria-controls="explicacao"><span class="category-icon" aria-hidden="true">🌱</span><span class="category-name">Solo</span><span class="category-action">Explorar →</span></button>
+            <button class="category-btn" type="button" data-topic="ar" aria-pressed="false" aria-controls="explicacao"><span class="category-icon" aria-hidden="true">🌬️</span><span class="category-name">Ar</span><span class="category-action">Explorar →</span></button>
+            <button class="category-btn" type="button" data-topic="plantas" aria-pressed="false" aria-controls="explicacao"><span class="category-icon" aria-hidden="true">🌳</span><span class="category-name">Plantas</span><span class="category-action">Explorar →</span></button>
+            <button class="category-btn" type="button" data-topic="animais" aria-pressed="false" aria-controls="explicacao"><span class="category-icon" aria-hidden="true">🐾</span><span class="category-name">Animais</span><span class="category-action">Explorar →</span></button>
+          </div>
+          <p class="flow-note">Dados → padrões → alertas e recomendações → ação humana</p>
+        </div>
+        <article class="detail-card" id="explicacao" aria-live="polite" aria-atomic="true">
+          <div class="detail-top"><span class="detail-icon" id="detail-icon" aria-hidden="true">💧</span><span class="step-tag">Etapa 02 · Aplicação</span></div>
+          <h3 id="detail-title">Água mais limpa e bem cuidada</h3>
+          <p id="detail-description">A IA ajuda a acompanhar rios, lagos e oceanos para identificar mudanças antes que virem problemas maiores.</p>
+          <hr class="detail-divider">
+          <p class="detail-label">Um exemplo na prática</p>
+          <p class="detail-example" id="detail-example">Sensores e imagens podem detectar sinais de contaminação ou floração excessiva de algas, ajudando equipes a investigar rapidamente.</p>
+          <div class="detail-impact"><strong>O que isso pode fazer?</strong><span id="detail-impact">Apoiar alertas mais rápidos e orientar onde coletar amostras e concentrar esforços de limpeza.</span></div>
+        </article>
+      </div>
+    </section>
+    <section class="how-section" id="como-funciona" aria-labelledby="how-title">
+      <span class="section-kicker">O ciclo da tecnologia</span>
+      <h2 id="how-title" style="margin:8px 0 0;color:var(--forest);font-size:clamp(1.8rem,3.5vw,2.8rem);letter-spacing:-.055em;line-height:1.12">A IA não age sozinha</h2>
+      <div class="how-grid">
+        <article class="how-item"><span class="how-number">01 — OBSERVAR</span><h3>Reunir sinais da natureza</h3><p>Satélites, câmeras, sensores e observações locais ajudam a registrar o que está acontecendo.</p></article>
+        <article class="how-item"><span class="how-number">02 — ENTENDER</span><h3>Encontrar padrões</h3><p>Modelos de IA organizam muitos dados e apontam mudanças, riscos ou lugares que merecem atenção.</p></article>
+        <article class="how-item"><span class="how-number">03 — AGIR</span><h3>Decidir em conjunto</h3><p>Pesquisadores, comunidades e gestores avaliam as recomendações e escolhem ações responsáveis.</p></article>
+      </div>
+      <aside class="care"><span class="care-icon" aria-hidden="true">⚖️</span><div><h3>Tecnologia com responsabilidade</h3><p>A IA é uma ferramenta de apoio, não substitui o conhecimento de quem vive no território nem a decisão humana. Bons resultados dependem de dados confiáveis, respeito à privacidade e acesso justo à tecnologia.</p></div></aside>
+    </section>
+  </main>
+  <footer><strong>IA pela Terra</strong> · Ideias para um futuro em equilíbrio com a natureza</footer>
+  <script>
+    const topics = {
+      agua: {
+        icon: '💧', title: 'Água mais limpa e bem cuidada',
+        description: 'A IA ajuda a acompanhar rios, lagos e oceanos para identificar mudanças antes que virem problemas maiores.',
+        example: 'Sensores e imagens podem detectar sinais de contaminação ou floração excessiva de algas, ajudando equipes a investigar rapidamente.',
+        impact: 'Apoiar alertas mais rápidos e orientar onde coletar amostras e concentrar esforços de limpeza.'
+      },
+      solo: {
+        icon: '🌱', title: 'Solo saudável para o futuro',
+        description: 'Ao combinar dados sobre umidade, nutrientes e clima, a IA pode apoiar o cuidado do solo e práticas agrícolas mais sustentáveis.',
+        example: 'Mapas feitos com sensores e imagens ajudam a identificar áreas com erosão ou necessidade de irrigação, evitando aplicar água e insumos em excesso.',
+        impact: 'Reduzir desperdícios, proteger a fertilidade e ajudar a prevenir a degradação do solo.'
+      },
+      ar: {
+        icon: '🌬️', title: 'Respirar um ar mais limpo',
+        description: 'Modelos de IA analisam medições e condições do tempo para acompanhar a poluição e prever como ela pode se espalhar.',
+        example: 'Um sistema pode combinar dados de estações de qualidade do ar e meteorologia para sinalizar bairros que precisam de atenção em um dia de fumaça ou poluição elevada.',
+        impact: 'Ajudar comunidades e gestores a se preparar, investigar fontes de poluição e planejar medidas de proteção.'
+      },
+      plantas: {
+        icon: '🌳', title: 'Florestas e plantas protegidas',
+        description: 'A IA pode comparar imagens ao longo do tempo para encontrar desmatamento, focos de incêndio ou sinais de estresse na vegetação.',
+        example: 'Imagens de satélite analisadas automaticamente podem indicar mudanças em uma floresta para que equipes verifiquem o local.',
+        impact: 'Acelerar o monitoramento, apoiar a restauração e direcionar equipes para áreas prioritárias.'
+      },
+      animais: {
+        icon: '🐾', title: 'Mais proteção para os animais',
+        description: 'Ferramentas de IA ajudam pesquisadores a observar espécies e habitats com menos perturbação aos animais.',
+        example: 'Câmeras e gravadores podem classificar imagens ou sons para registrar a presença de espécies raras e acompanhar seus deslocamentos.',
+        impact: 'Apoiar a conservação de espécies, identificar ameaças e planejar corredores ecológicos.'
+      }
+    };
+    const buttons = document.querySelectorAll('.category-btn');
+    const fields = {
+      icon: document.getElementById('detail-icon'),
+      title: document.getElementById('detail-title'),
+      description: document.getElementById('detail-description'),
+      example: document.getElementById('detail-example'),
+      impact: document.getElementById('detail-impact')
+    };
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const topic = topics[button.dataset.topic];
+        buttons.forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+        Object.keys(fields).forEach((key) => { fields[key].textContent = topic[key]; });
+      });
+    });
+  </script>
+</body>
+</html>
